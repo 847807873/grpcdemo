@@ -9,6 +9,7 @@ import (
 	"grpcdemo/test"
 	"log"
 	"net"
+	"strconv"
 )
 
 type server struct {
@@ -16,9 +17,9 @@ type server struct {
 }
 
 func (s *server) DoMD5(ctx context.Context,in *test.Req) (*test.Res,error) {
-	fmt.Println("MD5方法请求JSON:"+in.JsonStr)
+	fmt.Println("MD5方法请求JSON:"+in.JsonStr+"，年龄："+in.Age+"，金额："+ strconv.Itoa(int(in.Price)))
 
-	return &test.Res{BackJson:"MD5:"+fmt.Sprintf("%x",md5.Sum([]byte(in.JsonStr)))},nil
+	return &test.Res{BackJson:"MD5:"+fmt.Sprintf("%x",md5.Sum([]byte(in.JsonStr))),ResPrice:float32(in.Price + 10)},nil
 }
 
 

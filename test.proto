@@ -4,12 +4,16 @@ package test;
 
 service Waiter{
 	rpc DoMD5 (Req) returns (Res) {}
+
 }
 
 message Req{
 	string jsonStr = 1;
+	string age = 2;
+	float price = 3;
 }
 
 message Res{
 	string backJson = 1;
+	float resPrice =2;
 }

@@ -30,13 +30,13 @@ func main() {
 	}
 
 	// 调用grps接口
-	rt ,err := t.DoMD5(context.Background(),&test.Req{JsonStr:res})
+	rt ,err := t.DoMD5(context.Background(),&test.Req{JsonStr:res,Age:"20",Price:2.46})
 
 	if err !=nil{
 		log.Fatalf("colud not greet :%v",err)
 	}
 
-	log.Printf("服务端响应：%s",rt.BackJson)
+	log.Printf("服务端响应：%s,金额：%v",rt.BackJson,rt.ResPrice)
 
 
 }
