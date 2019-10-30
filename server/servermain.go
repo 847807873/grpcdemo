@@ -10,6 +10,7 @@ import (
 	"log"
 	"net"
 	"strconv"
+	"time"
 )
 
 type server struct {
@@ -22,6 +23,14 @@ func (s *server) DoMD5(ctx context.Context,in *test.Req) (*test.Res,error) {
 	return &test.Res{BackJson:"MD5:"+fmt.Sprintf("%x",md5.Sum([]byte(in.JsonStr))),ResPrice:float32(in.Price + 10)},nil
 }
 
+func (s *server) SayHello(ctx context.Context,req *test.Req)(*test.Res,error)  {
+
+	timeLayout := "2006-01-02 15:04:05"
+
+	fmt.Println("请求的日期时间："+ time.Now().Format(timeLayout))
+
+	return &test.Res{BackJson: "返回一句话：你很棒！"}, nil
+}
 
 func main()  {
 	//监听所有网卡8028端口的TCP连接

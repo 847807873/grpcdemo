@@ -6,6 +6,7 @@ import (
 	"grpcdemo/test"
 	"log"
 	"os"
+	"time"
 )
 
 func main() {
@@ -31,12 +32,18 @@ func main() {
 
 	// 调用grps接口
 	rt ,err := t.DoMD5(context.Background(),&test.Req{JsonStr:res,Age:"20",Price:2.46})
+	//测试定时循环
+	for i:=0;i<1000 ; i++ {
 
+		t.SayHello(context.Background(),&test.Req{JsonStr:res})
+		time.Sleep(1*time.Second)
+	}
+	//rt1,err := t.SayHello(context.Background(),&test.Req{JsonStr:res})
 	if err !=nil{
 		log.Fatalf("colud not greet :%v",err)
 	}
 
 	log.Printf("服务端响应：%s,金额：%v",rt.BackJson,rt.ResPrice)
 
-
+	//log.Println("sayhello 返回:",rt1.BackJson)
 }

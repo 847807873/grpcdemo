@@ -4,7 +4,7 @@ package test;
 
 service Waiter{
 	rpc DoMD5 (Req) returns (Res) {}
-
+	rpc SayHello(Req) returns (Res) {}
 }
 
 message Req{
